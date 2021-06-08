@@ -8,7 +8,6 @@ namespace RhumGuybrush
     {
         private uint val_Frontieres;
         private bool plantable;
-        private char type_Unite; // M --> Mer | F --> Forêt | T --> Terre
         private char nom;
 
         public Unite(char lettre_Unite, uint val_Frontieres2)
@@ -32,6 +31,16 @@ namespace RhumGuybrush
             }
         }
 
+        public Unite(uint val_Frontieres2)
+        {
+            val_Frontieres = val_Frontieres2;
+        }
+
+        public Unite(char nom2)
+        {
+            nom = nom2;
+        }
+
         public uint Val_Frontieres
         {
             get => val_Frontieres;
@@ -40,6 +49,7 @@ namespace RhumGuybrush
         public char Nom
         {
             get => nom;
+            set => nom = value;
         }
 
     }

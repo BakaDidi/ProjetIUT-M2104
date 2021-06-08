@@ -104,7 +104,9 @@ namespace RhumGuybrush
             char[,] tab_carte = new char[10, 10];
             int[,] tab_Crypte = new int[10, 10];
             int v = 0;
+            bool a_is_set = false;
             char type_Unite;
+            char compteur_Nom = 'a';
             uint valFrontieres = 0;
             string line;
 
@@ -125,85 +127,69 @@ namespace RhumGuybrush
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if ((tab_Crypte[i, j] - 64) > 0 && (tab_Crypte[i, j] - 64) < 16)
+                    if ((tab_Crypte[i, j] - 64) >= 0 && (tab_Crypte[i, j] - 64) < 16)
                     {
                         tab_Crypte[i, j] -= 64;
-                        type_Unite = 'M';
+                        tab_Unite[i, j] = new Unite('M');
                     }
-
-                    if ((tab_Crypte[i, j] - 32) > 0 && (tab_Crypte[i, j] - 32) < 16)
-                    {
-                        tab_Crypte[i, j] -= 32;
-                        type_Unite = 'F';
-                    }
-
                     else
                     {
-                        type_Unite = 'T';
-                    }
-
-                    if ((tab_Crypte[i, j] - 8) >= 0)
+                        if ((tab_Crypte[i, j] - 32) >= 0 && (tab_Crypte[i, j] - 32) < 16)
                         {
-                            tab_Crypte[i, j] -= 8;
+                            tab_Crypte[i, j] -= 32;
+                            tab_Unite[i, j] = new Unite('F');
                         }
-                    else
-                    {
-                        tab_Crypte[i, j] -= 8;
-                    }
 
-                    if ((tab_Crypte[i, j] - 8) >= 0)
-                    {
-                        tab_Crypte[i, j] -= 8;
-                    }
-                    else
-                    {
-                        tab_Crypte[i, j] -= 8;
-                    }
-
-                    if (j != 0) // vérifie à l'Ouest si j != 0
-                    {
-                        if (tab_carte[i, j] != tab_carte[i, j - 1])
+                        else
                         {
-                            valFrontieres += 2;
+                            if ((tab_Crypte[i, j] - 8) >= 0)
+                            {
+                                tab_Crypte[i, j] -= 8;
+                            }
+
+                            if ((tab_Crypte[i, j] - 4) >= 0)
+                            {
+                                tab_Crypte[i, j] -= 4;
+                            }
+
+                            if ((tab_Crypte[i, j] - 3) >= 0)
+                            {
+                                if (!a_is_set)
+                                {
+                                    tab_Unite[i, j] = new Unite(compteur_Nom);
+                                    a_is_set = true;
+                                }
+                                else
+                                {
+                                    compteur_Nom++;
+                                    tab_Unite[i, j] = new Unite(compteur_Nom);
+                                } 
+                            }
+
+                            else
+                            {
+                                if ((tab_Crypte[i, j] - 2) < 0)
+                                {
+                                    tab_Unite[i, j] = new Unite(tab_Unite[i, j - 1].Nom);
+                                }
+                                else
+                                {
+                                    tab_Unite[i, j] = new Unite(tab_Unite[i - 1, j].Nom);
+                                }
+                            }
                         }
                     }
-                    else
-                    {
-                        valFrontieres += 2;
-                    }
-
+                    
                 }
             }
-
-            /*for (i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
-                for (j = 0; j < 10; j++)
+                for (int j = 0; j < 10; j++)
                 {
-                    Console.WriteLine("tab2D[{0},{1}] = {2}", i, j, tab_carte[i, j]);
-                    if (i != 0) // vérifie au Nord si i != 0
-                    {
-                        if (tab_carte[i, j] != tab_carte[i - 1, j])
-                        {
-                            valFrontieres += 1;
-                        }
-                    }
-                    else
-                    {
-                        valFrontieres += 1;
-                    }
-
-                    if (j != 0) // vérifie à l'Ouest si j != 0
-                    {
-                        if (tab_carte[i, j] != tab_carte[i, j - 1])
-                        {
-                            valFrontieres += 2;
-                        }
-                    }
-                    else
-                    {
-                        valFrontieres += 2;
-                    }
-                }*/
+                    Console.Write("{0} |", tab_Unite[i, j].Nom);
+                }
+                Console.WriteLine("");
+            }
         }
     }
 }
