@@ -162,10 +162,11 @@ namespace RhumGuybrush
                                 else
                                 {
                                     compteur_Nom++;
-                                    tab_Unite[i, j] = new Unite(compteur_Nom);
+                                    ///tab_Unite[i, j] = new Unite(compteur_Nom);
+                                    ///
+                                    tab_Unite[i, j] = new Unite(Recursive_Check(compteur_Nom, i, j, tab_Crypte, tab_Unite));
                                 } 
                             }
-
                             else
                             {
                                 if ((tab_Crypte[i, j] - 2) < 0)
@@ -190,6 +191,53 @@ namespace RhumGuybrush
                 }
                 Console.WriteLine("");
             }
+        }
+
+        static char Recursive_Check(char default_char, int pos_x, int pos_y, int[,] tab_Val, Unite[,] tab_Unite)
+        {
+
+            bool frontiere_Droite = false;
+            bool frontiere_Haut = false;
+
+            if (pos_y + 1 < 10)
+            {
+                if ((tab_Val[pos_x, pos_y + 1] - 8) >= 0)
+                {
+                    tab_Val[pos_x, pos_y + 1] -= 8;
+                    frontiere_Droite = true;
+                }
+
+                if ((tab_Val[pos_x, pos_y + 1] - 4) >= 0)
+                {
+                    tab_Val[pos_x, pos_y + 1] -= 4;
+                }
+
+                if ((tab_Val[pos_x, pos_y + 1] - 2) >= 0)
+                {
+                    tab_Val[pos_x, pos_y + 1] -= 2;
+                    return default_char;
+                }
+
+                if ((tab_Val[pos_x, pos_y + 1] - 1) >= 0)
+                {
+                    tab_Val[pos_x, pos_y + 1] -= 1;
+                    frontiere_Haut = true;
+                }
+
+                if (frontiere_Haut && !frontiere_Droite)
+                {
+                    Recursive_Check(default_char, pos_x, pos_y + 1, tab_Val, tab_Unite);
+                }
+
+                if (!frontiere_Haut)
+                {
+                    return tab_Unite[pos_x - 1, pos_y + 1].Nom;
+                }
+
+                return default_char;
+            }
+            return default_char;
+
         }
     }
 }
