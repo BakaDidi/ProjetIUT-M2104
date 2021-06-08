@@ -11,3 +11,16 @@ L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybru
 L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.pdb
 L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.genruntimeconfig.cache
 L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.csproj.AssemblyReference.cache
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.exe
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.deps.json
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.runtimeconfig.json
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.runtimeconfig.dev.json
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.dll
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.pdb
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.csproj.AssemblyReference.cache
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.AssemblyInfoInputs.cache
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.AssemblyInfo.cs
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.csproj.CoreCompileInputs.cache
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.dll
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.pdb
+C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.genruntimeconfig.cache
