@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\xblas\\Source\\Repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\RhumGuybrush.csproj": {}
+    "C:\\Users\\xblas\\source\\repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\RhumGuybrush.csproj": {}
   },
   "projects": {
-    "C:\\Users\\xblas\\Source\\Repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\RhumGuybrush.csproj": {
+    "C:\\Users\\xblas\\source\\repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\RhumGuybrush.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\xblas\\Source\\Repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\RhumGuybrush.csproj",
+        "projectUniqueName": "C:\\Users\\xblas\\source\\repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\RhumGuybrush.csproj",
         "projectName": "RhumGuybrush",
-        "projectPath": "C:\\Users\\xblas\\Source\\Repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\RhumGuybrush.csproj",
+        "projectPath": "C:\\Users\\xblas\\source\\repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\RhumGuybrush.csproj",
         "packagesPath": "C:\\Users\\xblas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\xblas\\Source\\Repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\obj\\",
+        "outputPath": "C:\\Users\\xblas\\source\\repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\xblas\\AppData\\Roaming\\NuGet\\NuGet.Config",
