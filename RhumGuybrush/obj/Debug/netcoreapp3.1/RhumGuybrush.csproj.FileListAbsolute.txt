@@ -1,0 +1,13 @@
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.exe
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.deps.json
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.runtimeconfig.json
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.runtimeconfig.dev.json
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.dll
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.pdb
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.AssemblyInfoInputs.cache
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.AssemblyInfo.cs
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.csproj.CoreCompileInputs.cache
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.dll
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.pdb
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.genruntimeconfig.cache
+L:\Projet Clerentin\RhumGuybrush\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.csproj.AssemblyReference.cache

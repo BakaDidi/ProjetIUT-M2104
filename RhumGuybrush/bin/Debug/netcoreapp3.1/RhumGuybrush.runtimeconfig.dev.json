@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\xblas\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\xblas\\.nuget\\packages"
+    ]
+  }
+}
