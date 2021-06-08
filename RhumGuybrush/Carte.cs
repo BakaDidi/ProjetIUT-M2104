@@ -149,7 +149,9 @@ namespace RhumGuybrush
 
                             if ((tab_Crypte[i, j] - 4) >= 0)
                             {
+                                
                                 tab_Crypte[i, j] -= 4;
+                                Console.WriteLine("1 - val = {0}", tab_Crypte[4, 4]);
                             }
 
                             if ((tab_Crypte[i, j] - 3) >= 0)
@@ -162,9 +164,7 @@ namespace RhumGuybrush
                                 else
                                 {
                                     compteur_Nom++;
-                                    ///tab_Unite[i, j] = new Unite(compteur_Nom);
-                                    ///
-                                    tab_Unite[i, j] = new Unite(Recursive_Check(compteur_Nom, i, j, tab_Crypte, tab_Unite));
+                                    tab_Unite[i, j] = new Unite(Recursive_Check(ref compteur_Nom, i, j,tab_Crypte, tab_Unite));
                                 } 
                             }
                             else
@@ -193,51 +193,50 @@ namespace RhumGuybrush
             }
         }
 
-        static char Recursive_Check(char default_char, int pos_x, int pos_y, int[,] tab_Val, Unite[,] tab_Unite)
+        static char Recursive_Check(ref char default_char, int pos_x, int pos_y, int[,] tab_Val, Unite[,] tab_Unite)
         {
-
             bool frontiere_Droite = false;
             bool frontiere_Haut = false;
-
+            int valeur_test = tab_Val[pos_x, pos_y + 1];
             if (pos_y + 1 < 10)
             {
-                if ((tab_Val[pos_x, pos_y + 1] - 8) >= 0)
+                if ((valeur_test - 8) >= 0)
                 {
-                    tab_Val[pos_x, pos_y + 1] -= 8;
+                    valeur_test -= 8;
                     frontiere_Droite = true;
                 }
 
-                if ((tab_Val[pos_x, pos_y + 1] - 4) >= 0)
+                if ((valeur_test - 4) >= 0)
                 {
-                    tab_Val[pos_x, pos_y + 1] -= 4;
+                    valeur_test -= 4;
                 }
 
-                if ((tab_Val[pos_x, pos_y + 1] - 2) >= 0)
+                if (valeur_test - 2 >= 0)
                 {
-                    tab_Val[pos_x, pos_y + 1] -= 2;
+                    valeur_test -= 2;
                     return default_char;
                 }
 
-                if ((tab_Val[pos_x, pos_y + 1] - 1) >= 0)
+                if ((valeur_test - 1) >= 0)
                 {
-                    tab_Val[pos_x, pos_y + 1] -= 1;
+                    valeur_test -= 1;
                     frontiere_Haut = true;
                 }
 
                 if (frontiere_Haut && !frontiere_Droite)
                 {
-                    Recursive_Check(default_char, pos_x, pos_y + 1, tab_Val, tab_Unite);
+                    Recursive_Check(ref default_char, pos_x, pos_y + 1, tab_Val, tab_Unite);
                 }
 
                 if (!frontiere_Haut)
                 {
+                    default_char--;
                     return tab_Unite[pos_x - 1, pos_y + 1].Nom;
                 }
 
                 return default_char;
             }
-            return default_char;
-
+         return default_char;
         }
     }
 }
