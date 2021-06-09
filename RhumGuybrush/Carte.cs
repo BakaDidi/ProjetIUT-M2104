@@ -92,8 +92,9 @@ namespace RhumGuybrush
                 {
                     for (j = 0; j < 10; j++)
                     {
-                        Console.Write("{0} |", tab_Unite[i, j].Val_Frontieres);
+                        Console.Write("{0}:", tab_Unite[i, j].Val_Frontieres);
                     }
+                    Console.Write("|");
                 }
             }
         }
@@ -197,9 +198,10 @@ namespace RhumGuybrush
         {
             bool frontiere_Droite = false;
             bool frontiere_Haut = false;
-            int valeur_test = tab_Val[pos_x, pos_y + 1];
+            
             if (pos_y + 1 < 10)
             {
+                int valeur_test = tab_Val[pos_x, pos_y + 1];
                 if ((valeur_test - 8) >= 0)
                 {
                     valeur_test -= 8;
@@ -225,7 +227,7 @@ namespace RhumGuybrush
 
                 if (frontiere_Haut && !frontiere_Droite)
                 {
-                    Recursive_Check(ref default_char, pos_x, pos_y + 1, tab_Val, tab_Unite);
+                    return Recursive_Check(ref default_char, pos_x, pos_y + 1, tab_Val, tab_Unite);
                 }
 
                 if (!frontiere_Haut)
