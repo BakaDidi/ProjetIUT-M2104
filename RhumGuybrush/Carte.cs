@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace RhumGuybrush
 {
     abstract class Carte
     {
-        private static List<Parcelle> list_Parcelles = new List<Parcelle>();
+        private static List<Parcelle> List_Parcelles = new List<Parcelle>();
+        private static List<char> List_Carac_Parcelle = new List<char>();
 
         public static void Ecriture(string chemin, Unite[,] tab_Unite)
         {
@@ -93,7 +93,7 @@ namespace RhumGuybrush
 
         public static void Affiche_Parcelles()
         {
-            foreach (Parcelle i in list_Parcelles)
+            foreach (Parcelle i in List_Parcelles)
             {
                 Console.WriteLine("Parcelle {0} - {1} unites", i.Nom, i.Nb_Unites);
 
@@ -111,18 +111,52 @@ namespace RhumGuybrush
             string line;
             using (StreamReader sr = new StreamReader(chemin + ".clair"))
                 while ((line = sr.ReadLine()) != null)
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            tab_Carte[i, j] = line[j];
+                        }
+                        line = sr.ReadLine();
+                    }
+                }
+            return tab_Carte;
+        }
+
+        public static void Remplissage_Carac_Parcelle(char compteur_Nom)
+        {
+            for (char carac = 'a'; carac <= compteur_Nom; carac++)
+            {
+                List_Carac_Parcelle.Add(carac);
+                List_Parcelles.Add(new Parcelle(carac));
+            }
+        }
+
+        public static void Vide_Carac_Parcelle()
+        {
+            List_Carac_Parcelle.Clear();
+            List_Parcelles.Clear();
+        }
+
+        public static void Incrementation_nb_Unite_Parcelle(char compteur_Nom, Unite[,] tab_Unite)
+        {
+            foreach (char carac in List_Carac_Parcelle)
             {
                 for (int i = 0; i < 10; i++)
                 {
                     for (int j = 0; j < 10; j++)
                     {
-                        tab_Carte[i, j] = line[j];
+                        if (carac == tab_Unite[i, j].Nom)
+                        {
+                            List_Parcelles[carac - 'a'].Parcelle_increment(tab_Unite[i, j]);     /// Le - 'a' permet de retirer la valeur 97 à carac pour obtenir l'indice dans la liste (a = 0 | b = 1 ...)
+                        }
                     }
-                    line = sr.ReadLine();
                 }
             }
-            return tab_Carte;
         }
+
+
 
         public static void Cryptage(string chemin)
         {
@@ -226,7 +260,7 @@ namespace RhumGuybrush
 
                             if ((tab_Crypte[i, j] - 4) >= 0)
                             {
-                                
+
                                 tab_Crypte[i, j] -= 4;
                             }
 
@@ -234,105 +268,90 @@ namespace RhumGuybrush
                             {
                                 if (!a_is_set)
                                 {
-                                    list_Parcelles.Add(new Parcelle(compteur_Nom));
                                     tab_Unite[i, j] = new Unite(compteur_Nom, i, j);
-                                    list_Parcelles[tab_Unite[i, j].Numero_parcelle].Parcelle_increment(tab_Unite[i, j]);
                                     a_is_set = true;
                                 }
                                 else
                                 {
                                     compteur_Nom++;
-                                    tab_Unite[i, j] = new Unite(Recursive_Check(ref compteur_Nom, i, j,tab_Crypte, tab_Unite, ref compteur_list_parcelle, out bool frontiere_Gauche), i, j);
-                                    if (frontiere_Gauche)
-                                    {
-                                        list_Parcelles.Add(new Parcelle(compteur_Nom));
-                                        list_Parcelles[tab_Unite[i, j].Numero_parcelle].Parcelle_increment(tab_Unite[i, j]);
-                                    }
-                                    else
-                                    {
-                                        list_Parcelles[tab_Unite[i, j].Numero_parcelle].Parcelle_increment(tab_Unite[i, j]);
-                                    }
-                                } 
+                                    tab_Unite[i, j] = new Unite(Recursive_Check(ref compteur_Nom, i, j, tab_Crypte, tab_Unite), i, j);
+                                }
                             }
                             else
                             {
-                                if ((tab_Crypte[i, j] - 2) < 0)     /// Quand l'on rencontre une unite que l'on connaît déjà à gauche
+                                if ((tab_Crypte[i, j] - 2) < 0)     /// Quand on rencontre une unite que l'on connaît déjà à gauche
                                 {
                                     tab_Unite[i, j] = new Unite(tab_Unite[i, j - 1].Nom, i, j);
-                                    list_Parcelles[tab_Unite[i, j].Numero_parcelle].Parcelle_increment(tab_Unite[i, j]); /// Ajout de l'Unite dans la parcelle actuelle
 
                                 }
-                                else        /// Quand l'on rencontre une unite que l'on connaît déjà en haut
+                                else        /// Quand on rencontre une unite que l'on connaît déjà en haut
                                 {
                                     tab_Unite[i, j] = new Unite(tab_Unite[i - 1, j].Nom, i, j);
-                                    list_Parcelles[tab_Unite[i, j].Numero_parcelle].Parcelle_increment(tab_Unite[i, j]);  /// Idem
                                 }
                             }
                         }
                     }
-                    
-                }
+                } 
             }
+
+            Remplissage_Carac_Parcelle(compteur_Nom);
+            Incrementation_nb_Unite_Parcelle(compteur_Nom, tab_Unite);
             Affichage(chemin, tab_Unite);
             Affiche_Parcelles();
-        }
+            Vide_Carac_Parcelle();
 
-        private static char Recursive_Check(ref char default_char, int pos_x, int pos_y, int[,] tab_Val, Unite[,] tab_Unite, ref int compteur_list_parcelle, out bool frontiere_Gauche)
-        {
-            bool frontiere_Droite = false;
-            bool frontiere_Haut = false;
-            frontiere_Gauche = false;
-            
-            if (pos_y + 1 < 10)
+
+            static char Recursive_Check(ref char default_char, int pos_x, int pos_y, int[,] tab_Val, Unite[,] tab_Unite)
             {
-                int valeur_test = tab_Val[pos_x, pos_y + 1];
-                if ((valeur_test - 8) >= 0)
-                {
-                    valeur_test -= 8;
-                    frontiere_Droite = true;
-                }
+                bool frontiere_Droite = false;
+                bool frontiere_Haut = false;
+                bool frontiere_Gauche = false;
 
-                if ((valeur_test - 4) >= 0)
+                if (pos_y + 1 < 10)
                 {
-                    valeur_test -= 4;
-                }
+                    int valeur_test = tab_Val[pos_x, pos_y + 1];
+                    if ((valeur_test - 8) >= 0)
+                    {
+                        valeur_test -= 8;
+                        frontiere_Droite = true;
+                    }
 
-                if (valeur_test - 2 >= 0)
-                {
-                    frontiere_Gauche = true;
-                    valeur_test -= 2;
-                    compteur_list_parcelle++;
+                    if ((valeur_test - 4) >= 0)
+                    {
+                        valeur_test -= 4;
+                    }
+
+                    if (valeur_test - 2 >= 0)
+                    {
+                        frontiere_Gauche = true;
+                        valeur_test -= 2;
+                        return default_char;
+                    }
+
+                    if ((valeur_test - 1) >= 0)
+                    {
+                        valeur_test -= 1;
+                        frontiere_Haut = true;
+                    }
+
+                    if (frontiere_Haut && !frontiere_Droite)
+                    {
+                        return Recursive_Check(ref default_char, pos_x, pos_y + 1, tab_Val, tab_Unite);
+                    }
+
+                    if (!frontiere_Haut)
+                    {
+                        default_char--;
+                        return tab_Unite[pos_x - 1, pos_y + 1].Nom;
+                    }
                     return default_char;
                 }
 
-                if ((valeur_test - 1) >= 0)
-                {
-                    valeur_test -= 1;
-                    frontiere_Haut = true;
-                }
-
-                if (frontiere_Haut && !frontiere_Droite)
-                {
-                    return Recursive_Check(ref default_char, pos_x, pos_y + 1, tab_Val, tab_Unite, ref compteur_list_parcelle, out frontiere_Gauche);
-                }
-
-                if (!frontiere_Haut)
-                {
-                    default_char--;
-                    return tab_Unite[pos_x - 1, pos_y + 1].Nom;
-                }
-                
-                list_Parcelles.Add(new Parcelle(default_char));
-                compteur_list_parcelle++;
                 return default_char;
             }
-            
-            list_Parcelles.Add(new Parcelle(default_char));
-            compteur_list_parcelle++;
-            return default_char;
-        }
-       
-    }
 
-    
+        }
+
+
+    }
 }
