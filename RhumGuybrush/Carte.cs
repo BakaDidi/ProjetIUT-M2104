@@ -280,7 +280,6 @@ namespace RhumGuybrush
         {
             Unite[,] tab_Unite = new Unite[10, 10];
             char[,] tab_carte = new char[10, 10];
-            int compteur_list_parcelle = 0;
             bool a_is_set = false;
             char compteur_Nom = 'a';
             int[,] tab_Crypte = Lecture(chemin);
@@ -355,7 +354,6 @@ namespace RhumGuybrush
             {
                 bool frontiere_Droite = false;
                 bool frontiere_Haut = false;
-                bool frontiere_Gauche = false;
 
                 if (pos_y + 1 < 10)
                 {
@@ -373,7 +371,6 @@ namespace RhumGuybrush
 
                     if (valeur_test - 2 >= 0)
                     {
-                        frontiere_Gauche = true;
                         valeur_test -= 2;
                         return default_char;
                     }
