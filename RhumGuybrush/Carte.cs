@@ -91,6 +91,60 @@ namespace RhumGuybrush
             }
         }
 
+        public static void Affiche_List_Parcelles(char compteur_Nom, Unite[,] tab_Unite, string chemin)
+        {
+            Remplissage_Carac_Parcelle(compteur_Nom);
+            Incrementation_nb_Unite_Parcelle(compteur_Nom, tab_Unite);
+            Affichage(chemin, tab_Unite);
+            Affiche_Parcelles();
+        }
+
+
+        public static void Moyenne_Taille_Parcelles()
+        {
+            float somme = 0;
+            foreach (Parcelle i in List_Parcelles)
+            {
+                somme += i.Nb_Unites;
+            }
+            somme /= List_Parcelles.Count;
+            Console.WriteLine("");
+            Console.WriteLine("Aire moyenne : {0}", Math.Round(somme, 2));
+        }
+
+        public static void Taille_Parcelles(char parcelle_nom)
+        {
+            if ((parcelle_nom - 'a') > List_Parcelles.Count)
+            {
+                Console.WriteLine("Parcelle {0} : inexistante", parcelle_nom);
+                Console.WriteLine("Taille de la parcelle {0} : 0 unites", parcelle_nom);
+            }
+            else
+            {
+                Console.WriteLine("Taille de la parcelle {0} : {1} unites", parcelle_nom, List_Parcelles[parcelle_nom - 'a'].Nb_Unites);
+            }
+            
+        }
+
+        public static void Affiche_List_Parcelles_Sup_Valeur(int valeur)
+        {
+            bool flag = false;
+            Console.WriteLine("Parcelles de taille supérieure ou égale à {0} : ", valeur);
+            foreach (Parcelle i in List_Parcelles)
+            {
+                if (i.Nb_Unites >= valeur)
+                {
+                    Console.WriteLine("Parcelle {0}: {1} unites", i.Nom, i.Nb_Unites);
+                    flag = true;
+                }
+            }
+            if (!flag)
+            {
+                Console.WriteLine("Aucune parcelle");
+            }
+            Console.WriteLine("");
+        }
+
         public static void Affiche_Parcelles()
         {
             foreach (Parcelle i in List_Parcelles)
@@ -156,8 +210,6 @@ namespace RhumGuybrush
             }
         }
 
-
-
         public static void Cryptage(string chemin)
         {
             {
@@ -222,7 +274,6 @@ namespace RhumGuybrush
                         valFrontieres = 0;
                     }
                 }
-                Ecriture(chemin, tab_Unite);
             }
         }
         public static void Decryptage(string chemin)
@@ -291,15 +342,14 @@ namespace RhumGuybrush
                             }
                         }
                     }
-                } 
+                }
+                
             }
-
-            Remplissage_Carac_Parcelle(compteur_Nom);
-            Incrementation_nb_Unite_Parcelle(compteur_Nom, tab_Unite);
-            Affichage(chemin, tab_Unite);
-            Affiche_Parcelles();
+            Affiche_List_Parcelles(compteur_Nom, tab_Unite, chemin);
+            Moyenne_Taille_Parcelles();
+            Affiche_List_Parcelles_Sup_Valeur(4);
+            Taille_Parcelles('o');
             Vide_Carac_Parcelle();
-
 
             static char Recursive_Check(ref char default_char, int pos_x, int pos_y, int[,] tab_Val, Unite[,] tab_Unite)
             {
