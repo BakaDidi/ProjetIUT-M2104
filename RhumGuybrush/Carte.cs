@@ -123,7 +123,7 @@ namespace RhumGuybrush
             {
                 Console.WriteLine("Taille de la parcelle {0} : {1} unites", parcelle_nom, List_Parcelles[parcelle_nom - 'a'].Nb_Unites);
             }
-            
+
         }
 
         public static void Affiche_List_Parcelles_Sup_Valeur(int valeur)
@@ -212,69 +212,68 @@ namespace RhumGuybrush
 
         public static void Cryptage(string chemin)
         {
-            {
-                char[,] tab_Carte = new char[10, 10];
-                Unite[,] tab_Unite = new Unite[10, 10];
-                uint valFrontieres = 0;
-                tab_Carte = Remplissage_Tableau(chemin, tab_Carte);
+            char[,] tab_Carte = new char[10, 10];
+            Unite[,] tab_Unite = new Unite[10, 10];
+            uint valFrontieres = 0;
+            tab_Carte = Remplissage_Tableau(chemin, tab_Carte);
 
-                for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
                 {
-                    for (int j = 0; j < 10; j++)
+                    if (i != 0) // vérifie au Nord si i != 0
                     {
-                        if (i != 0) // vérifie au Nord si i != 0
-                        {
-                            if (tab_Carte[i, j] != tab_Carte[i - 1, j])
-                            {
-                                valFrontieres += 1;
-                            }
-                        }
-                        else
+                        if (tab_Carte[i, j] != tab_Carte[i - 1, j])
                         {
                             valFrontieres += 1;
                         }
+                    }
+                    else
+                    {
+                        valFrontieres += 1;
+                    }
 
-                        if (j != 0) // vérifie à l'Ouest si j != 0
-                        {
-                            if (tab_Carte[i, j] != tab_Carte[i, j - 1])
-                            {
-                                valFrontieres += 2;
-                            }
-                        }
-                        else
+                    if (j != 0) // vérifie à l'Ouest si j != 0
+                    {
+                        if (tab_Carte[i, j] != tab_Carte[i, j - 1])
                         {
                             valFrontieres += 2;
                         }
+                    }
+                    else
+                    {
+                        valFrontieres += 2;
+                    }
 
-                        if (i != 9) // vérifie au Sud si i != 9
-                        {
-                            if (tab_Carte[i, j] != tab_Carte[i + 1, j])
-                            {
-                                valFrontieres += 4;
-                            }
-                        }
-                        else
+                    if (i != 9) // vérifie au Sud si i != 9
+                    {
+                        if (tab_Carte[i, j] != tab_Carte[i + 1, j])
                         {
                             valFrontieres += 4;
                         }
+                    }
+                    else
+                    {
+                        valFrontieres += 4;
+                    }
 
-                        if (j != 9) // vérifie à l'Est si j != 9
-                        {
-                            if (tab_Carte[i, j] != tab_Carte[i, j + 1])
-                            {
-                                valFrontieres += 8;
-                            }
-                        }
-                        else
+                    if (j != 9) // vérifie à l'Est si j != 9
+                    {
+                        if (tab_Carte[i, j] != tab_Carte[i, j + 1])
                         {
                             valFrontieres += 8;
                         }
-
-                        tab_Unite[i, j] = new Unite(tab_Carte[i, j], valFrontieres);
-                        valFrontieres = 0;
                     }
+                    else
+                    {
+                        valFrontieres += 8;
+                    }
+
+                    tab_Unite[i, j] = new Unite(tab_Carte[i, j], valFrontieres);
+                    valFrontieres = 0;
                 }
             }
+            Ecriture(chemin, tab_Unite);
         }
         public static void Decryptage(string chemin)
         {
@@ -332,7 +331,6 @@ namespace RhumGuybrush
                                 if ((tab_Crypte[i, j] - 2) < 0)     /// Quand on rencontre une unite que l'on connaît déjà à gauche
                                 {
                                     tab_Unite[i, j] = new Unite(tab_Unite[i, j - 1].Nom, i, j);
-
                                 }
                                 else        /// Quand on rencontre une unite que l'on connaît déjà en haut
                                 {
@@ -342,12 +340,16 @@ namespace RhumGuybrush
                         }
                     }
                 }
-                
             }
+
             Affiche_List_Parcelles(compteur_Nom, tab_Unite, chemin);
+
             Moyenne_Taille_Parcelles();
+
             Affiche_List_Parcelles_Sup_Valeur(4);
+
             Taille_Parcelles('o');
+
             Vide_Carac_Parcelle();
 
             static char Recursive_Check(ref char default_char, int pos_x, int pos_y, int[,] tab_Val, Unite[,] tab_Unite)
@@ -393,12 +395,8 @@ namespace RhumGuybrush
                     }
                     return default_char;
                 }
-
                 return default_char;
             }
-
         }
-
-
     }
 }

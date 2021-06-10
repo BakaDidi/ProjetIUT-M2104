@@ -4,10 +4,10 @@ using System.IO;
 namespace RhumGuybrush
 {
     class Program
-    {        
+    {
         static void Main(string[] args)
         {
-            
+
             string reponse;
             do
             {
@@ -35,10 +35,10 @@ namespace RhumGuybrush
                         Console.WriteLine("");
                         Console.WriteLine("");
                     }
-                    
+
                     else
                     {
-                        if(reponse == "Q")
+                        if (reponse == "Q")
                         {
                             Environment.Exit(0);
                         }
@@ -49,7 +49,7 @@ namespace RhumGuybrush
                             Console.WriteLine("");
                         }
                     }
-                   
+
                 }
             }
             while (reponse != "C" | reponse != "D");
