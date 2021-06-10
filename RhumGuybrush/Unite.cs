@@ -9,6 +9,9 @@ namespace RhumGuybrush
         private uint val_Frontieres;
         private bool plantable;
         private char nom;
+        private int pos_x;
+        private int pos_y;
+        private int numero_parcelle;
 
         public Unite(char lettre_Unite, uint val_Frontieres2)
         {
@@ -41,6 +44,14 @@ namespace RhumGuybrush
             nom = nom2;
         }
 
+        public Unite(char nom2, int pos_x2, int pos_y2)
+        {
+            nom = nom2;
+            pos_x = pos_x2;
+            pos_y = pos_y2;
+            numero_parcelle = nom - 97;
+        }
+
         public uint Val_Frontieres
         {
             get => val_Frontieres;
@@ -51,6 +62,18 @@ namespace RhumGuybrush
             get => nom;
             set => nom = value;
         }
+        public int Pos_x
+        {
+            get => pos_x;
+        }
+        public int Pos_y
+        {
+            get => pos_y;
+        }
 
+        public int Numero_parcelle
+        {
+            get => numero_parcelle;
+        }
     }
 }

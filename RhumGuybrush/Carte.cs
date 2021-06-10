@@ -7,35 +7,135 @@ namespace RhumGuybrush
 {
     abstract class Carte
     {
+        private static List<Parcelle> list_Parcelles = new List<Parcelle>();
+
+        public static void Ecriture(string chemin, Unite[,] tab_Unite)
+        {
+            using (StreamWriter fichierDestination = new StreamWriter(chemin + ".chiffre"))
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (j == 9)
+                        {
+                            Console.Write("{0}", tab_Unite[i, j].Val_Frontieres);
+                            fichierDestination.Write("{0}", tab_Unite[i, j].Val_Frontieres);
+                        }
+                        else
+                        {
+                            Console.Write("{0}:", tab_Unite[i, j].Val_Frontieres);
+                            fichierDestination.Write("{0}:", tab_Unite[i, j].Val_Frontieres);
+                        }
+                    }
+                    Console.Write("|");
+                    fichierDestination.Write("|");
+                }
+            }
+        }
+
+        public static int[,] Lecture(string chemin)
+        {
+            int[,] tab_Crypte = new int[10, 10];
+            int v = 0;
+            string line;
+            using (StreamReader sr = new StreamReader(chemin + ".chiffre"))
+                line = sr.ReadLine();
+            string[] tab_Temp = line.Split('|', ':');
+            for (int j = 0; j < 10; j++)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    tab_Crypte[j, i] = Convert.ToInt32(tab_Temp[v]);
+                    v++;
+                }
+            }
+            return tab_Crypte;
+        }
+
+        public static void Affichage(string chemin, Unite[,] tab_Unite)
+        {
+            using (StreamWriter fichierDestination = new StreamWriter(chemin + ".clair"))
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (tab_Unite[i, j].Nom == 'M')
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(tab_Unite[i, j].Nom);
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            if (tab_Unite[i, j].Nom == 'F')
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                Console.Write(tab_Unite[i, j].Nom);
+                                Console.ResetColor();
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.Write(tab_Unite[i, j].Nom);
+                                Console.ResetColor();
+                            }
+                        }
+                        fichierDestination.Write(tab_Unite[i, j].Nom);
+                    }
+                    Console.WriteLine("");
+                    fichierDestination.WriteLine("");
+                }
+                Console.ResetColor();
+            }
+        }
+
+        public static void Affiche_Parcelles()
+        {
+            foreach (Parcelle i in list_Parcelles)
+            {
+                Console.WriteLine("Parcelle {0} - {1} unites", i.Nom, i.Nb_Unites);
+
+                foreach (Unite j in i.List_Unite)
+                {
+                    Console.Write("({0},{1})  ", j.Pos_x, j.Pos_y);
+                }
+
+                Console.WriteLine("");
+            }
+        }
+
+        public static char[,] Remplissage_Tableau(string chemin, char[,] tab_Carte)
+        {
+            string line;
+            using (StreamReader sr = new StreamReader(chemin + ".clair"))
+                while ((line = sr.ReadLine()) != null)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        tab_Carte[i, j] = line[j];
+                    }
+                    line = sr.ReadLine();
+                }
+            }
+            return tab_Carte;
+        }
+
         public static void Cryptage(string chemin)
         {
-
-            using (StreamReader sr = new StreamReader(chemin))
             {
                 char[,] tab_Carte = new char[10, 10];
                 Unite[,] tab_Unite = new Unite[10, 10];
-                int i;
-                int j;
                 uint valFrontieres = 0;
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    for (i = 0; i < 10; i++)
-                    {
-                        for (j = 0; j < 10; j++)
-                        {
-                            tab_Carte[i, j] = line[j];
-                        }
-                        line = sr.ReadLine();
-                    }
-                }
+                tab_Carte = Remplissage_Tableau(chemin, tab_Carte);
 
-                for (i = 0; i < 10; i++)
+                for (int i = 0; i < 10; i++)
                 {
-                    for (j = 0; j < 10; j++)
+                    for (int j = 0; j < 10; j++)
                     {
-                        Console.WriteLine("tab2D[{0},{1}] = {2}", i, j, tab_Carte[i, j]);
-
                         if (i != 0) // vérifie au Nord si i != 0
                         {
                             if (tab_Carte[i, j] != tab_Carte[i - 1, j])
@@ -88,41 +188,17 @@ namespace RhumGuybrush
                         valFrontieres = 0;
                     }
                 }
-                for (i = 0; i < 10; i++)
-                {
-                    for (j = 0; j < 10; j++)
-                    {
-                        Console.Write("{0}:", tab_Unite[i, j].Val_Frontieres);
-                    }
-                    Console.Write("|");
-                }
+                Ecriture(chemin, tab_Unite);
             }
         }
-
         public static void Decryptage(string chemin)
         {
             Unite[,] tab_Unite = new Unite[10, 10];
             char[,] tab_carte = new char[10, 10];
-            int[,] tab_Crypte = new int[10, 10];
-            int v = 0;
+            int compteur_list_parcelle = 0;
             bool a_is_set = false;
-            char type_Unite;
             char compteur_Nom = 'a';
-            uint valFrontieres = 0;
-            string line;
-
-            using (StreamReader sr = new StreamReader(chemin))
-            line = sr.ReadLine();
-            string[] tab_Temp = line.Split('|', ':');
-
-            for (int j = 0; j < 10; j++)
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    tab_Crypte[j, i] = Convert.ToInt32(tab_Temp[v]);
-                    v++;
-                }
-            }
+            int[,] tab_Crypte = Lecture(chemin);
 
             for (int i = 0; i < 10; i++)
             {
@@ -152,31 +228,44 @@ namespace RhumGuybrush
                             {
                                 
                                 tab_Crypte[i, j] -= 4;
-                                Console.WriteLine("1 - val = {0}", tab_Crypte[4, 4]);
                             }
 
                             if ((tab_Crypte[i, j] - 3) >= 0)
                             {
                                 if (!a_is_set)
                                 {
-                                    tab_Unite[i, j] = new Unite(compteur_Nom);
+                                    list_Parcelles.Add(new Parcelle(compteur_Nom));
+                                    tab_Unite[i, j] = new Unite(compteur_Nom, i, j);
+                                    list_Parcelles[tab_Unite[i, j].Numero_parcelle].Parcelle_increment(tab_Unite[i, j]);
                                     a_is_set = true;
                                 }
                                 else
                                 {
                                     compteur_Nom++;
-                                    tab_Unite[i, j] = new Unite(Recursive_Check(ref compteur_Nom, i, j,tab_Crypte, tab_Unite));
+                                    tab_Unite[i, j] = new Unite(Recursive_Check(ref compteur_Nom, i, j,tab_Crypte, tab_Unite, ref compteur_list_parcelle, out bool frontiere_Gauche), i, j);
+                                    if (frontiere_Gauche)
+                                    {
+                                        list_Parcelles.Add(new Parcelle(compteur_Nom));
+                                        list_Parcelles[tab_Unite[i, j].Numero_parcelle].Parcelle_increment(tab_Unite[i, j]);
+                                    }
+                                    else
+                                    {
+                                        list_Parcelles[tab_Unite[i, j].Numero_parcelle].Parcelle_increment(tab_Unite[i, j]);
+                                    }
                                 } 
                             }
                             else
                             {
-                                if ((tab_Crypte[i, j] - 2) < 0)
+                                if ((tab_Crypte[i, j] - 2) < 0)     /// Quand l'on rencontre une unite que l'on connaît déjà à gauche
                                 {
-                                    tab_Unite[i, j] = new Unite(tab_Unite[i, j - 1].Nom);
+                                    tab_Unite[i, j] = new Unite(tab_Unite[i, j - 1].Nom, i, j);
+                                    list_Parcelles[tab_Unite[i, j].Numero_parcelle].Parcelle_increment(tab_Unite[i, j]); /// Ajout de l'Unite dans la parcelle actuelle
+
                                 }
-                                else
+                                else        /// Quand l'on rencontre une unite que l'on connaît déjà en haut
                                 {
-                                    tab_Unite[i, j] = new Unite(tab_Unite[i - 1, j].Nom);
+                                    tab_Unite[i, j] = new Unite(tab_Unite[i - 1, j].Nom, i, j);
+                                    list_Parcelles[tab_Unite[i, j].Numero_parcelle].Parcelle_increment(tab_Unite[i, j]);  /// Idem
                                 }
                             }
                         }
@@ -184,20 +273,15 @@ namespace RhumGuybrush
                     
                 }
             }
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    Console.Write("{0} |", tab_Unite[i, j].Nom);
-                }
-                Console.WriteLine("");
-            }
+            Affichage(chemin, tab_Unite);
+            Affiche_Parcelles();
         }
 
-        static char Recursive_Check(ref char default_char, int pos_x, int pos_y, int[,] tab_Val, Unite[,] tab_Unite)
+        private static char Recursive_Check(ref char default_char, int pos_x, int pos_y, int[,] tab_Val, Unite[,] tab_Unite, ref int compteur_list_parcelle, out bool frontiere_Gauche)
         {
             bool frontiere_Droite = false;
             bool frontiere_Haut = false;
+            frontiere_Gauche = false;
             
             if (pos_y + 1 < 10)
             {
@@ -215,7 +299,9 @@ namespace RhumGuybrush
 
                 if (valeur_test - 2 >= 0)
                 {
+                    frontiere_Gauche = true;
                     valeur_test -= 2;
+                    compteur_list_parcelle++;
                     return default_char;
                 }
 
@@ -227,7 +313,7 @@ namespace RhumGuybrush
 
                 if (frontiere_Haut && !frontiere_Droite)
                 {
-                    return Recursive_Check(ref default_char, pos_x, pos_y + 1, tab_Val, tab_Unite);
+                    return Recursive_Check(ref default_char, pos_x, pos_y + 1, tab_Val, tab_Unite, ref compteur_list_parcelle, out frontiere_Gauche);
                 }
 
                 if (!frontiere_Haut)
@@ -235,10 +321,18 @@ namespace RhumGuybrush
                     default_char--;
                     return tab_Unite[pos_x - 1, pos_y + 1].Nom;
                 }
-
+                
+                list_Parcelles.Add(new Parcelle(default_char));
+                compteur_list_parcelle++;
                 return default_char;
             }
-         return default_char;
+            
+            list_Parcelles.Add(new Parcelle(default_char));
+            compteur_list_parcelle++;
+            return default_char;
         }
+       
     }
+
+    
 }
