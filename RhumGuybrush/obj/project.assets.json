@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\antoi\\.nuget\\packages\\": {}
+    "C:\\Users\\xblas\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\antoi\\Source\\Repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\RhumGuybrush.csproj",
+      "projectUniqueName": "C:\\Users\\xblas\\Source\\Repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\RhumGuybrush.csproj",
       "projectName": "RhumGuybrush",
-      "projectPath": "C:\\Users\\antoi\\Source\\Repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\RhumGuybrush.csproj",
-      "packagesPath": "C:\\Users\\antoi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\antoi\\Source\\Repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\obj\\",
+      "projectPath": "C:\\Users\\xblas\\Source\\Repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\RhumGuybrush.csproj",
+      "packagesPath": "C:\\Users\\xblas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\xblas\\Source\\Repos\\BakaDidi\\ProjetIUT-M2104\\RhumGuybrush\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\antoi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\xblas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

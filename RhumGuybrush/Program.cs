@@ -8,89 +8,77 @@ namespace RhumGuybrush
         static void Main(string[] args)
         {
 
-            string reponse;
-            string reponse;
-            string reponse;
-            string reponse;
+            char reponse_char;
+
             do
             {
                 Console.WriteLine("Quel mode voulez vous choisir ? Entrez \"D\" pour le mode déchiffrage et \"C\" pour le chiffrage. Pour quitter, entrez \"Q\"");
-                reponse = Console.ReadLine();
-                if (reponse == "C")
+                reponse_char = Convert.ToChar(Console.ReadLine());
+                if (reponse_char == 'C')
                 {
-                    Console.WriteLine("");
-                    Console.WriteLine("Entrez le nom du fichier");
+                    Console.WriteLine("\nEntrez le nom du fichier");
                     string fichier = Console.ReadLine();
                     Console.WriteLine("");
                     Carte.Cryptage(fichier);
-                    Console.WriteLine("");
-                    Console.WriteLine("");
                 }
                 else
                 {
-                    if (reponse == "D")
+                    if (reponse_char == 'D')
                     {
-                        Console.WriteLine("");
-                        Console.WriteLine("Entrez le nom du fichier");
+                        Console.WriteLine("\nEntrez le nom du fichier");
                         string fichier = Console.ReadLine();
                         Console.WriteLine("");
                         Carte.Decryptage(fichier);
-                        Console.WriteLine("");
-                        Console.WriteLine("");
                         
-                        Console.WriteLine("Voulez vous afficher la les coordonées et le nombre d'unites de toutes les parcelles ? (Y/N)");
-                        reponse = Console.ReadLine();
-                        if(reponse == "Y")
+                        Console.WriteLine("\n\nVoulez vous afficher la les coordonées et le nombre d'unites de toutes les parcelles ? (Y/N)");
+                        reponse_char = Convert.ToChar(Console.ReadLine());
+                        if (reponse_char == 'Y')
                         {
-                                Affiche_Parcelles();
+                            Console.WriteLine("");
+                            Carte.Affiche_Parcelles();
                         }
-                        Console.WriteLine("Voulez vous afficher la les coordonées et le nombre d'unites d'une parcelles cible ? (Y/N)");
-                        reponse = Console.ReadLine();
-                        if(reponse == "Y")
+                        Console.WriteLine("\nVoulez vous afficher la les coordonées et le nombre d'unites d'une parcelles cible ? (Y/N)");
+                        reponse_char = Convert.ToChar(Console.ReadLine());
+                        if (reponse_char == 'Y')
                         {
-                                Console.WriteLine("Entrez le nom de la parcelle à cibler");
-                                reponse = Console.ReadLine();
-                                Taille_Parcelles(reponse);
+                            Console.WriteLine("\nEntrez le nom de la parcelle à cibler");
+                            reponse_char = Convert.ToChar(Console.ReadLine());
+                            Carte.Taille_Parcelles(reponse_char);
                         }
-                        Console.WriteLine("Voulez vous afficher les parcelles plus grandes qu'une taille choisi ? (Y/N)");
-                        reponse = Console.ReadLine();
-                        if(reponse == "Y")
+                        Console.WriteLine("\n\nVoulez vous afficher les parcelles plus grandes qu'une taille choisi ? (Y/N)");
+                        reponse_char = Convert.ToChar(Console.ReadLine());
+                        if (reponse_char == 'Y')
                         {
-                                Console.WriteLine("Entrez la taille minimum des parcelles à cibler");
-                                reponse = Console.ReadLine();
-                                Affiche_List_Parcelles_Sup_Valeur(int valeur);
+                            Console.WriteLine("\nEntrez la taille minimum des parcelles à cibler");
+                            int valeur = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("");
+                            Carte.Affiche_List_Parcelles_Sup_Valeur(valeur);
                         }
-                        Console.WriteLine("Voulez vous afficher la taille moyenne des parcelles ? (Y/N)");
-                        reponse = Console.ReadLine();
-                        if(reponse == "Y")
+                        Console.WriteLine("\nVoulez vous afficher la taille moyenne des parcelles ? (Y/N)");
+                        reponse_char = Convert.ToChar(Console.ReadLine());
+                        if (reponse_char == 'Y')
                         {
-                                Moyenne_Taille_Parcelles();
+                            Carte.Moyenne_Taille_Parcelles();
+                            Console.WriteLine("");
                         }
-
-
-                     reponse = Console.ReadLine();
-
-                        
-
+                        Carte.Vide_Carac_Parcelle();
                     }
 
                     else
                     {
-                        if (reponse == "Q")
+                        if (reponse_char == 'Q')
                         {
                             Environment.Exit(0);
                         }
                         else
                         {
-                            Console.WriteLine("");
-                            Console.WriteLine("Vous êtes un petit plaisantin, recommencez :)");
-                            Console.WriteLine("");
+                            Console.WriteLine("\nVous êtes un petit plaisantin, recommencez :)\n");
                         }
                     }
 
                 }
             }
-            while (reponse != "C" | reponse != "D");
+            while (reponse_char != 'C' | reponse_char != 'D' | reponse_char != 'Y' | reponse_char != 'N');
 
 
         }
