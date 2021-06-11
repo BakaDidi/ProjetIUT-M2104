@@ -24,3 +24,9 @@ C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netc
 C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.dll
 C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.pdb
 C:\Users\xblas\source\repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.genruntimeconfig.cache
+C:\Users\antoi\Source\Repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.csprojAssemblyReference.cache
+C:\Users\antoi\Source\Repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.AssemblyInfoInputs.cache
+C:\Users\antoi\Source\Repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.AssemblyInfo.cs
+C:\Users\antoi\Source\Repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.csproj.CoreCompileInputs.cache
+C:\Users\antoi\Source\Repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.dll
+C:\Users\antoi\Source\Repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.pdb
