@@ -54,7 +54,7 @@ namespace RhumGuybrush
 
         #region Constructeurs
         /// <summary>
-        /// Constructeur de la classe
+        /// Constructeur de la classe <see cref="Parcelle"/>
         /// </summary>
         /// <param name="nom2">Nom de la parcelle</param>
         public Parcelle(char nom2)
