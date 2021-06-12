@@ -5,7 +5,7 @@ using System.Text;
 namespace RhumGuybrush
 {
     /// <summary>
-    /// Classe parcelle: modélise une parcelle 
+    /// Classe Parcelle: modélise une parcelle 
     /// </summary>
     class Parcelle
     {
