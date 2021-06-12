@@ -30,3 +30,16 @@ C:\Users\antoi\Source\Repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netc
 C:\Users\antoi\Source\Repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.csproj.CoreCompileInputs.cache
 C:\Users\antoi\Source\Repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.dll
 C:\Users\antoi\Source\Repos\BakaDidi\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.pdb
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.exe
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.deps.json
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.runtimeconfig.json
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.runtimeconfig.dev.json
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.dll
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\bin\Debug\netcoreapp3.1\RhumGuybrush.pdb
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.csproj.AssemblyReference.cache
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.AssemblyInfoInputs.cache
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.AssemblyInfo.cs
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.csproj.CoreCompileInputs.cache
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.dll
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.pdb
+C:\Users\xdidi\Source\Repos\ProjetIUT-M2104\RhumGuybrush\obj\Debug\netcoreapp3.1\RhumGuybrush.genruntimeconfig.cache

@@ -4,11 +4,29 @@ using System.IO;
 
 namespace RhumGuybrush
 {
+    /// <summary>
+    /// Classe Carte: modélise une carte
+    /// </summary>
     abstract class Carte
     {
+        #region Attributs
+        /// <summary>
+        /// Liste des parcelles de la carte
+        /// </summary>
         private static List<Parcelle> List_Parcelles = new List<Parcelle>();
-        private static List<char> List_Carac_Parcelle = new List<char>();
 
+        /// <summary>
+        /// Liste des caractères constituant la carte
+        /// </summary>
+        private static List<char> List_Carac_Parcelle = new List<char>();
+        #endregion
+
+        #region Methodes
+        /// <summary>
+        /// Permet d'écrire dans un fichier .chiffre, la carte chiffrée.
+        /// </summary>
+        /// <param name="chemin">Nom du fichier sur l'ordinateur de l'utilisateur</param>
+        /// <param name="tab_Unite">Tableau contenant les unites constituant la carte</param>
         public static void Ecriture(string chemin, Unite[,] tab_Unite)
         {
             using (StreamWriter fichierDestination = new StreamWriter(chemin + ".chiffre"))
@@ -34,7 +52,11 @@ namespace RhumGuybrush
             }
             Console.WriteLine("\n\nFichier enregistré dans {0}", Path.GetFullPath(chemin + ".chiffre"));
         }
-
+        /// <summary>
+        /// Permet de lire une carte chiffre et de stocker son contenu dans un tableau
+        /// </summary>
+        /// <param name="chemin">Nom du fichier sur l'ordinateur de l'utilisateur</param>
+        /// <returns> Renvoie le tableau contenant les valeurs lues dans le fichier</returns>
         public static int[,] Lecture(string chemin)
         {
             int[,] tab_Crypte = new int[10, 10];
@@ -53,7 +75,11 @@ namespace RhumGuybrush
             }
             return tab_Crypte;
         }
-
+        /// <summary>
+        /// Affiche une carte clair dans la console en respectant un code couleur
+        /// </summary>
+        /// <param name="chemin">Nom du fichier sur l'ordinateur de l'utilisateur</param>
+        /// <param name="tab_Unite">Tableau contenant les unites constituant la carte</param>
         public static void Affichage(string chemin, Unite[,] tab_Unite)
         {
             using (StreamWriter fichierDestination = new StreamWriter(chemin + ".clair"))
@@ -91,7 +117,12 @@ namespace RhumGuybrush
                 Console.ResetColor();
             }
         }
-
+        /// <summary>
+        /// Affiche la liste des parcelles de la carte
+        /// </summary>
+        /// <param name="compteur_Nom">Compteur permettant de retenir le nom des parcelles</param>
+        /// <param name="tab_Unite">Tableau contenant les unites constituant la carte</param>
+        /// <param name="chemin">Nom du fichier sur l'ordinateur de l'utilisateur</param>
         public static void Affiche_List_Parcelles(char compteur_Nom, Unite[,] tab_Unite, string chemin)
         {
             Remplissage_Carac_Parcelle(compteur_Nom);
@@ -99,7 +130,9 @@ namespace RhumGuybrush
             Affichage(chemin, tab_Unite);
         }
 
-
+        /// <summary>
+        /// Affiche la taille moyenne des parcelles de la carte
+        /// </summary>
         public static void Moyenne_Taille_Parcelles()
         {
             float somme = 0;
@@ -110,7 +143,10 @@ namespace RhumGuybrush
             somme /= List_Parcelles.Count;
             Console.WriteLine("\nAire moyenne : {0}", Math.Round(somme, 2));
         }
-
+        /// <summary>
+        /// Affiche la taille d'un parcelle en particulier
+        /// </summary>
+        /// <param name="parcelle_nom">Nom de la parcelle à afficher</param>
         public static void Taille_Parcelles(char parcelle_nom)
         {
             if ((parcelle_nom - 'a') > List_Parcelles.Count)
@@ -124,7 +160,10 @@ namespace RhumGuybrush
             }
 
         }
-
+        /// <summary>
+        /// Affiche les parcelles dont la valeur est supérieure à celle entrée en paramètre
+        /// </summary>
+        /// <param name="valeur">Valeur à comparer</param>
         public static void Affiche_List_Parcelles_Sup_Valeur(int valeur)
         {
             bool flag = false;
@@ -142,7 +181,9 @@ namespace RhumGuybrush
                 Console.WriteLine("Aucune parcelle\n");
             }
         }
-
+        /// <summary>
+        /// Affiche toute les parcelles de la carte
+        /// </summary>
         public static void Affiche_Parcelles()
         {
             foreach (Parcelle i in List_Parcelles)
@@ -157,7 +198,12 @@ namespace RhumGuybrush
                 Console.WriteLine("");
             }
         }
-
+        /// <summary>
+        /// Rempli un tableau à partir d'une carte clair 
+        /// </summary>
+        /// <param name="chemin">Nom du fichier sur l'ordinateur de l'utilisateur</param>
+        /// <param name="tab_Carte">Tableau contenant les valeur en caractère de la carte clair</param>
+        /// <returns>Renvoie le tableau en paramètre</returns>
         public static char[,] Remplissage_Tableau(string chemin, char[,] tab_Carte)
         {
             string line;
@@ -175,7 +221,10 @@ namespace RhumGuybrush
                 }
             return tab_Carte;
         }
-
+        /// <summary>
+        /// Rempli la liste des parcelles avec le bon caractères
+        /// </summary>
+        /// <param name="compteur_Nom">Compteur permettant de retenir le nom des parcelles</param>
         public static void Remplissage_Carac_Parcelle(char compteur_Nom)
         {
             for (char carac = 'a'; carac <= compteur_Nom; carac++)
@@ -184,13 +233,19 @@ namespace RhumGuybrush
                 List_Parcelles.Add(new Parcelle(carac));
             }
         }
-
+        /// <summary>
+        /// Permet de vider les liste de caractères des parcelles et liste de parcelles
+        /// </summary>
         public static void Vide_Carac_Parcelle()
         {
             List_Carac_Parcelle.Clear();
             List_Parcelles.Clear();
         }
-
+        /// <summary>
+        /// Permet de compter le nombre d'unité d'une parcelle
+        /// </summary>
+        /// <param name="compteur_Nom">Compteur permettant de retenir le nom des parcelles</param>
+        /// <param name="tab_Unite">Tableau contenant les unites constituant la carte</param>
         public static void Incrementation_nb_Unite_Parcelle(char compteur_Nom, Unite[,] tab_Unite)
         {
             foreach (char carac in List_Carac_Parcelle)
@@ -201,13 +256,16 @@ namespace RhumGuybrush
                     {
                         if (carac == tab_Unite[i, j].Nom)
                         {
-                            List_Parcelles[carac - 'a'].Parcelle_increment(tab_Unite[i, j]);     /// Le - 'a' permet de retirer la valeur 97 à carac pour obtenir l'indice dans la liste (a = 0 | b = 1 ...)
+                            List_Parcelles[carac - 'a'].Parcelle_increment(tab_Unite[i, j]);     // Le - 'a' permet de retirer la valeur 97 à carac pour obtenir l'indice dans la liste (a = 0 | b = 1 ...)
                         }
                     }
                 }
             }
         }
-
+        /// <summary>
+        /// Crypte la carte entrée en paramètre
+        /// </summary>
+        /// <param name="chemin">Nom du fichier sur l'ordinateur de l'utilisateur</param>
         public static void Cryptage(string chemin)
         {
             char[,] tab_Carte = new char[10, 10];
@@ -273,6 +331,10 @@ namespace RhumGuybrush
             }
             Ecriture(chemin, tab_Unite);
         }
+        /// <summary>
+        /// Décrypte la carte entrée en paramètre
+        /// </summary>
+        /// <param name="chemin">Nom du fichier sur l'ordinateur de l'utilisateur</param>
         public static void Decryptage(string chemin)
         {
             Unite[,] tab_Unite = new Unite[10, 10];
@@ -390,5 +452,6 @@ namespace RhumGuybrush
                 return default_char;
             }
         }
+        #endregion
     }
 }
